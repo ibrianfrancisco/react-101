@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { formatPrice } from '../helpers';
 
@@ -39,7 +40,10 @@ class Order extends React.Component {
             </TransitionGroup>
             lbs {fish.name}
             {formatPrice(count * fish.price)}
-            <button onClick={() => this.props.removeFromOrder(key)}>
+            <button
+              type="button"
+              onClick={() => this.props.removeFromOrder(key)}
+            >
               &times;
             </button>
           </span>
@@ -74,5 +78,11 @@ class Order extends React.Component {
     );
   }
 }
+
+Order.propTypes = {
+  fishes: PropTypes.object,
+  order: PropTypes.object,
+  removeFromOrder: PropTypes.func,
+};
 
 export default Order;
